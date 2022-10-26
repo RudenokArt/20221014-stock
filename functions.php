@@ -2,8 +2,9 @@
 
 
 if (isset($_GET['tg_bot'])) {
-  include_once 'php_core/tg_bot.php';
-  //var_dump((new Tg_bot())->user);
+  include_once 'php_core/Tg_bot.php';
+  echo (new Tg_bot())->result;
+  exit();
 }
 
 //var_dump(add_user_meta( 2, 'tg_id', '123456789', true));
