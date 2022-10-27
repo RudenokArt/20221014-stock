@@ -7,10 +7,13 @@ if (isset($_GET['tg_bot'])) {
   exit();
 }
 
+include_once 'php_core/User.php';
+
+
 //var_dump(add_user_meta( 2, 'tg_id', '123456789', true));
 //print_r(get_user_meta(2));
 // ?tg_bot=Y&user=720796397&action=registration
-// ?tg_bot=Y&user=123456789&action=registration
+// ?tg_bot=Y&user=720796397&action=recovery
 
 
 ?>
