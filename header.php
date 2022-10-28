@@ -1,3 +1,13 @@
+<?php 
+$current_page = basename(get_permalink());
+if (!$GLOBALS['current_user']->data->ID and $current_page != 'login') {
+  echo '<script>document.location.href="login";</script>';
+}
+if (isset($_GET['logout'])) {
+  wp_logout();
+  echo '<script>document.location.href="login";</script>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +21,19 @@
 <body>
   <div class="container">
     <div class="row pt-5">
-      <div class="col-12 col-sm-6 col-md-4 col-sx-2">
-        <?php if (is_user_logged_in()): ?>
-        <i class="fa fa-user-o" aria-hidden="true"></i>
-      <?php else: ?>
-        <button class="btn btn-outline-info">
-          login
-        </button>
-      <?php endif ?>
-      </div>
-      
+      <?php if ($GLOBALS['current_user']->data->ID): ?>
+        <div class="col-12 col-sm-6 col-md-4 col-sx-2">
+          <i class="fa fa-user-o" aria-hidden="true"></i>
+          <?php echo $GLOBALS['current_user']->data->user_login; ?>
+          <br>Пользователь авторизован.
+          <br>Здесь будет вход в кабинет.
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 col-sx-2">
+          <a href="?logout=Y">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            Выход
+          </a>
+        </div>
+      <?php endif ?>      
     </div>
   </div>
-
-  <pre><?php print_r(wp_get_current_user());?></pre>
