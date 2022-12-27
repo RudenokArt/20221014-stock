@@ -7,6 +7,13 @@ if (isset($_GET['logout'])) {
   wp_logout();
   echo '<script>document.location.href="login";</script>';
 }
+
+$stock_pages = get_pages([
+  'post_type' => 'page',
+  'post_status' => 'publish',
+  // 'exclude' => get_page_by_path('login')->ID,
+]);
+echo $current_page;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,15 +27,13 @@ if (isset($_GET['logout'])) {
 </head>
 <body>
   <div class="container">
-    <div class="row pt-5">
+    <div class="row justify-content-end pt-5">
       <?php if ($GLOBALS['current_user']->data->ID): ?>
-        <div class="col-12 col-sm-6 col-md-4 col-sx-2">
+        <div class="col-6 col-sm-3 col-md-2 col-lg-1">
           <i class="fa fa-user-o" aria-hidden="true"></i>
           <?php echo $GLOBALS['current_user']->data->user_login; ?>
-          <br>Пользователь авторизован.
-          <br>Здесь будет вход в кабинет.
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-sx-2">
+        <div class="col-6 col-sm-3 col-md-2 col-lg-2">
           <a href="?logout=Y">
             <i class="fa fa-sign-out" aria-hidden="true"></i>
             Выход
@@ -36,4 +41,28 @@ if (isset($_GET['logout'])) {
         </div>
       <?php endif ?>      
     </div>
+    <div class="row">
+      <div class="col-12">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link <?php if ($current_page == 'index'): ?>
+            active
+            <?php endif ?>" aria-current="page" href="/">Главная</a>
+          </li>
+          <?php foreach ($stock_pages as $key => $value): ?>
+            <li class="nav-item">
+              <a class="nav-link <?php if ($current_page == $value->post_name): ?>
+              active
+              <?php endif ?>" href="<?php echo $value->guid; ?>">
+              <?php echo $value->post_title ?>
+            </a>
+          </li>
+        <?php endforeach ?>
+      </ul>
+    </div>
   </div>
+</div>
+
+<pre>
+  <?php   print_r($stock_pages); ?>
+</pre>

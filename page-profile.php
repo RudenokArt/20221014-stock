@@ -1,6 +1,3 @@
 <?php get_header(); ?>
-<div class="container">
-  index
-  
-</div>
+profile
 <?php get_footer(); ?>

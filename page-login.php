@@ -1,4 +1,8 @@
 <?php
+
+if (is_user_logged_in()) {
+  echo '<script>document.location.href="../";</script>';
+}
 if (isset($_POST['authorization'])) {
   $authorization = wp_signon([
     'user_login' => $_POST['login'],
@@ -48,5 +52,4 @@ if (isset($_POST['authorization'])) {
     </div>
   </div>
 </form>
-<pre><?php print_r($_POST); ?></pre>
 <?php get_footer(); ?>

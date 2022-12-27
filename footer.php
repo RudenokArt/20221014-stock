@@ -1,4 +1,6 @@
 <hr>
-<pre><?php print_r($GLOBALS['current_user']);?></pre>
+<div class="container">
+  site_footer
+</div>
 </body>
 </html>
