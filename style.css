@@ -2,3 +2,12 @@
  Theme Name:  stock_main
  Author: RudenokArt@yandex.ru
  */
+
+.smart_link {
+  outline: none;
+  text-decoration: none;
+}
+
+.invisible_node {
+  display: none;
+}

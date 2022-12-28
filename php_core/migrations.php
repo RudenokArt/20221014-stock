@@ -15,14 +15,7 @@ if (!get_page_by_path('profile')->ID) {
     'post_status' => 'publish',
   ]);
 }
-if (!get_page_by_path('index')->ID) {
-  wp_insert_post([
-    'post_type' => 'page',
-    'post_title' => 'Главная',
-    'post_name' => 'index',
-    'post_status' => 'publish',
-  ]);
-}
+
 
 $stock_migration = new Migration();
 
