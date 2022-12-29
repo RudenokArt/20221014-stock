@@ -1,4 +1,6 @@
 <?php 
+
+// ===== Страницы =====
 if (!get_page_by_path('login')->ID) {
   wp_insert_post([
     'post_type' => 'page',
@@ -15,30 +17,26 @@ if (!get_page_by_path('profile')->ID) {
     'post_status' => 'publish',
   ]);
 }
-
-
-$stock_migration = new Migration();
-
-/**
- * 
- */
-class Migration {
-
-  function __construct() {
-
-    $this->order_category = category_exists('order');
-
-    if (!$this->order_category) {
-      wp_insert_category([
-        'cat_ID' => 0,
-        'cat_name' => 'Заказ',
-        'category_description' => 'Категория для заказов на бирже',
-        'category_nicename' => 'order',
-        'taxonomy' => 'category',
-      ]);
-    }
-  }
+if (!get_page_by_path('alert')->ID) {
+  wp_insert_post([
+    'post_type' => 'page',
+    'post_title' => 'alert',
+    'post_name' => 'alert',
+    'post_status' => 'publish',
+  ]);
 }
+
+// ===== Рубрики =====
+if (!category_exists('order')) {
+  wp_insert_category([
+    'cat_ID' => 0,
+    'cat_name' => 'Заказ',
+    'category_description' => 'Категория для заказов на бирже',
+    'category_nicename' => 'order',
+    'taxonomy' => 'category',
+  ]);
+}
+
 
 
 ?>

@@ -11,7 +11,10 @@ if (isset($_GET['logout'])) {
 $stock_pages = get_pages([
   'post_type' => 'page',
   'post_status' => 'publish',
-  'exclude' => get_page_by_path('login')->ID,
+  'exclude' => [
+    get_page_by_path('login')->ID,
+    get_page_by_path('alert')->ID,
+  ]
 ]);
 ?>
 <!DOCTYPE html>

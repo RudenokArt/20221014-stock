@@ -16,7 +16,7 @@
       </a>
     </div>
   </div>
-  <form action="" method="post" id="post_add_form" class="row justify-content-center border-bottom pb-3">
+  <form action="alert" method="post" id="post_add_form" class="row justify-content-center border-bottom pb-3">
     <div class="col-lg-3 col-md-6 col-sm-6 col-12 pt-2">
       Заказчик:
       <input type="text" class="form-control" name="customer_name" required>
@@ -37,15 +37,24 @@
       <textarea name="order_description" class="form-control" rows="2" placeholder="Комментарий"></textarea>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6 col-12 pt-2">
-      <button class="btn btn-outline-info">
+      <button class="btn btn-outline-info" name="add_new_order" value="Y">
         <i class="fa fa-floppy-o" aria-hidden="true"></i>
         Сохранить заказ
       </button>
     </div>
   </form>
 <?php endif ?>
+
+
+
+  <?php $orders_list = get_posts([
+    'category' => 'order',
+  ]); ?>
+
+  <pre><?php print_r($orders_list); ?></pre>
+
+
 </div>
-<pre><?php print_r($_POST);?></pre>
 <script>
   $(function () {
     $('#post_add_form').hide();
