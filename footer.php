@@ -1,6 +1,6 @@
 <hr>
 <div class="container">
-  site_footer
+  <h1 style="color:rgba(0, 0, 0, 0.2);">Здесь будет подвал сайта</h1>
 </div>
 
 

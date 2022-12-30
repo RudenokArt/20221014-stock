@@ -9,7 +9,7 @@ if ($_POST['add_new_order'] == 'Y') {
   $post_id = wp_insert_post([
     'post_content' => $_POST['order_description'],
     'post_status' => 'publish',
-    'post_title' => $_POST['customer_name'],
+    'post_title' => $_POST['order_title'],
     'post_type' => 'post',
     'post_category' => [get_category_by_slug('order')->term_id],
   ]);
@@ -19,9 +19,12 @@ if ($_POST['add_new_order'] == 'Y') {
   } else {
     $alert_message = 'Создан заказ № '.$post_id;
     $alert_color = 'success';
-    add_post_meta($post_id, 'phone', $_POST['customer_phone']);
-    add_post_meta($post_id, 'email', $_POST['customer_mail']);
-    add_post_meta($post_id, 'address', $_POST['customer_address']);
+    add_post_meta($post_id, 'customer_name', $_POST['customer_name']);
+    add_post_meta($post_id, 'customer_phone', $_POST['customer_phone']);
+    add_post_meta($post_id, 'customer_email', $_POST['customer_mail']);
+    add_post_meta($post_id, 'customer_address', $_POST['customer_address']);
+    add_post_meta($post_id, 'order_status', 0);
+    add_post_meta($post_id, 'order_contractor', 0);
   }
 } else {
   echo '<script>document.location.href="/";</script>';
@@ -36,5 +39,4 @@ if ($_POST['add_new_order'] == 'Y') {
     <?php echo $alert_message; ?>
 </div>
 </div>
-<pre><?php print_r($_POST);?></pre>
 <?php get_footer(); ?>
