@@ -14,7 +14,7 @@
       </a>
     </div>
   </div>
-  <form action="alert" method="post" id="post_add_form" class="row justify-content-center pb-3">
+  <form action="alert" enctype="multipart/form-data" method="post" id="post_add_form" class="row justify-content-center pb-3">
     <div class="col-lg-3 col-md-6 col-sm-6 col-12 pt-2">
       Заказ:
       <input type="text" class="form-control" name="order_title" required>
@@ -31,9 +31,13 @@
       тел.:
       <input type="text" class="form-control" name="customer_phone" required>
     </div>
-    <div class="col-12 pt-2">
+    <div class="col-lg-9 col-md-6 col-sm-6 col-12 pt-2 pt-2">
       Адрес:
       <input type="text" class="form-control" name="customer_address" required>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12 pt-2">
+      Приложение:
+      <input type="file" class="form-control" name="order_attachment">
     </div>
     <div class="col-12 pt-2">
       <textarea name="order_description" class="form-control" rows="2" placeholder="Комментарий"></textarea>

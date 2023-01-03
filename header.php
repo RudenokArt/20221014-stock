@@ -17,6 +17,7 @@ $stock_pages = get_pages([
   ]
 ]);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,4 +66,5 @@ $stock_pages = get_pages([
     </div>
   </div>
 </div>
+
 

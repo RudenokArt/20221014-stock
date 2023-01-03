@@ -24,7 +24,7 @@
 
   <?php foreach ($orders_list as $key => $value): ?>
     <?php $value->meta = get_post_meta($value->ID) ?>
-    <a href="<?php echo $value->guid; ?>" class="row border-bottom smart_link pt-1 pb-1 text-body orders_list-item">
+    <a href="<?php echo $value->post_name; ?>" class="row border-bottom smart_link pt-1 pb-1 text-body orders_list-item">
 
       <div class="col-lg-2 col-md-4 col-sm-6 col-12">
         <small class="text-secondary">№</small>
@@ -38,16 +38,16 @@
         <small class="text-secondary">Заказ:</small>
         <?php echo $value->post_title; ?>
         <br>
-        <small class="text-secondary">Дата заказа:</small>
+        <small class="text-secondary">Дата размещения:</small>
         <?php echo $value->post_date; ?>
       </div>
 
       <div class="col-lg-2 col-md-4 cols-sm-6 col-12">
         <small class="text-secondary">Менеджер:</small>
-        <?php echo $value->post_author; ?>
+        <?php echo get_user_by('id', $value->post_author)->data->display_name; ?>
         <br>
         <small class="text-secondary">Подрядчик:</small>
-        <?php echo $value->meta['order_contractor'][0]; ?>
+         <?php echo get_user_by('id', $value->meta['order_contractor'][0])->data->display_name; ?>
       </div>
 
       <div class="col-lg-2 col-md-4 cols-sm-6 col-12">

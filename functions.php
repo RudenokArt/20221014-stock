@@ -1,5 +1,6 @@
 <?php 
 require_once ABSPATH . '/wp-admin/includes/taxonomy.php';
+require_once ABSPATH . 'wp-admin/includes/file.php';
 if ($_GET['migrations'] == 'Y') {
   include_once 'php_core/migrations.php'; // файл миграций
 }
