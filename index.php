@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="container">
+<div class="container pt-5">
   <?php 
 
   include_once 'includes/index-post_add_form.php'; 

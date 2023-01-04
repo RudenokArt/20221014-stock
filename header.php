@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 $current_page = explode('/', $_SERVER['REQUEST_URI'])[1];
 if (!$GLOBALS['current_user']->data->ID and $current_page != 'login') {
   echo '<script>document.location.href="login";</script>';

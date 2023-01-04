@@ -1,10 +1,6 @@
-<?php if (
-    $GLOBALS['current_user']->roles[0] == 'administrator'
-    or
-    $GLOBALS['current_user']->roles[0] == 'author'
-  ): ?>
+<?php if ($stock_helper->manager_access): ?>
   <div class="row">
-    <div class="col pt-3" id="post_add_form-slide">
+    <div class="col" id="post_add_form-slide">
       <a href="#" class="smart_link">
         <span class="h5">
           Добавить заказ
