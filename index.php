@@ -1,16 +1,19 @@
 <?php get_header(); ?>
+
 <div class="container pt-5">
   <?php 
+  // ===== Показ ошибок =====
+  include_once 'includes/display_errors.php';
 
   include_once 'includes/index-post_add_form.php'; 
   $orders_on_page = 10;
   $order_category = get_category_by_slug('order');
   $pages_count = ceil($order_category->count/$orders_on_page);
   $current_page = 1;
-  if ($_GET['page']) {
+  if (isset($_GET['page']) and $_GET['page']) {
     $current_page = $_GET['page'];
   }
-  if ($_GET['page'] > $pages_count) {
+  if (isset($_GET['page']) and $_GET['page'] > $pages_count) {
     $current_page = $pages_count;
   }
 
@@ -21,17 +24,17 @@
   ]);
 
   ?>
-
   <?php foreach ($orders_list as $key => $value): ?>
     <?php $value->meta = get_post_meta($value->ID) ?>
-    <a href="<?php echo $value->post_name; ?>" class="row border-bottom smart_link pt-1 pb-1 text-body orders_list-item">
+    <a href="<?php echo $value->post_name; ?>"
+      class="row border border-<?php echo $order_statuses_arr[$value->meta['order_status'][0]]['color']; ?> smart_link pt-1 mb-1 text-body orders_list-item">
 
       <div class="col-lg-2 col-md-4 col-sm-6 col-12">
         <small class="text-secondary">№</small>
         <?php echo $value->ID; ?>
         <br>
         <small class="text-secondary">Статус заказа:</small>
-        <?php echo $value->meta['order_status'][0]; ?>
+        <?php echo $order_statuses_arr[$value->meta['order_status'][0]]['title']; ?>
       </div>
 
       <div class="col-lg-3 col-md-6 col-sm-12 col-12">
@@ -47,7 +50,10 @@
         <?php echo get_user_by('id', $value->post_author)->data->display_name; ?>
         <br>
         <small class="text-secondary">Подрядчик:</small>
-         <?php echo get_user_by('id', $value->meta['order_contractor'][0])->data->display_name; ?>
+        <?php if ($value->meta['order_contractor'][0]): ?>
+          <?php echo get_user_by('id', $value->meta['order_contractor'][0])->data->display_name; ?>
+        <?php endif ?>
+        
       </div>
 
       <div class="col-lg-2 col-md-4 cols-sm-6 col-12">

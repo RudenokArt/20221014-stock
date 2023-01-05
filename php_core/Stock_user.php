@@ -3,7 +3,7 @@
 /**
  * 
  */
-class Helper {
+class Stock_user {
   
   function __construct() {
     $this->current_user = wp_get_current_user();

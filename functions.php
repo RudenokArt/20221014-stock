@@ -1,7 +1,7 @@
 <?php 
 require_once ABSPATH . '/wp-admin/includes/taxonomy.php';
 require_once ABSPATH . 'wp-admin/includes/file.php';
-include_once 'php_core/Helper.php';
+include_once 'php_core/Stock_user.php';
 if ($_GET['migrations'] == 'Y') {
   include_once 'php_core/migrations.php'; // файл миграций
 }
@@ -23,7 +23,7 @@ $order_statuses_arr = [
   ['title'=> 'Оплачен', 'color' => 'success',],
   ['title'=> 'Анулирован', 'color' => 'danger',],
 ];
-$stock_helper = new Helper();
+$stock_user = new Stock_user();
 
 // ?tg_bot=Y&user=720796397&action=registration
 // ?tg_bot=Y&user=720796397&action=recovery

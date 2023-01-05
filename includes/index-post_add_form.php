@@ -1,4 +1,4 @@
-<?php if ($stock_helper->manager_access): ?>
+<?php if ($stock_user->manager_access): ?>
   <div class="row">
     <div class="col" id="post_add_form-slide">
       <a href="#" class="smart_link">
