@@ -1,6 +1,6 @@
 <?php
 
-$current_page = explode('/', $_SERVER['REQUEST_URI'])[1];
+$current_page = explode('?', explode('/', $_SERVER['REQUEST_URI'])[1])[0];
 if (!$GLOBALS['current_user']->data->ID and $current_page != 'login') {
   echo '<script>document.location.href="login";</script>';
 }
@@ -18,7 +18,6 @@ $stock_pages = get_pages([
   ]
 ]);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
