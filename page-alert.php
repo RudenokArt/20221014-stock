@@ -13,8 +13,9 @@ elseif (isset($_POST['order_update']) and $_POST['order_update'] == 'Y') {
 }
 
 elseif ($_GET['order_contractor']) {
-  $update_result = update_post_meta( $_GET['ID'], 'order_contractor', $_GET['order_contractor'] );
-  if ($update_result) {
+  $update_status = update_post_meta($_GET['ID'], 'order_status', 1);
+  $update_contaractor = update_post_meta( $_GET['ID'], 'order_contractor', $_GET['order_contractor'] );
+  if ($update_status and $update_contaractor) {
     $alert_message = 'Вы определены исполнителем по закузу № '.$_GET['ID'];
     $alert_color = 'success';
   } else {

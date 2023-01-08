@@ -4,8 +4,8 @@
   <?php 
   // ===== Показ ошибок =====
   include_once 'includes/display_errors.php';
+  // ===== Форма добавления заказа =====
 
-  include_once 'includes/index-post_add_form.php'; 
   $orders_on_page = 10;
   $order_category = get_category_by_slug('order');
   $pages_count = ceil($order_category->count/$orders_on_page);
@@ -22,8 +22,10 @@
     'numberposts' => $orders_on_page,
     'offset' => ($current_page - 1) * $orders_on_page,
   ]);
-
   ?>
+
+  <?php include_once 'includes/index-post_filter_form.php'; ?>
+  <?php include_once 'includes/index-post_add_form.php'; ?>
   <?php foreach ($orders_list as $key => $value): ?>
     <?php $value->meta = get_post_meta($value->ID) ?>
     <a href="<?php echo $value->post_name; ?>"
@@ -53,7 +55,7 @@
         <?php if ($value->meta['order_contractor'][0]): ?>
           <?php echo get_user_by('id', $value->meta['order_contractor'][0])->data->display_name; ?>
         <?php endif ?>
-        
+
       </div>
 
       <div class="col-lg-2 col-md-4 cols-sm-6 col-12">
@@ -76,17 +78,5 @@
   <?php endforeach ?>
 
   <?php include_once 'includes/index-pagination.php' ?>
-
-
 </div>
-<script>
-  $(function () {
-    $('#post_add_form').hide();
-    $('#post_add_form-slide').click(function () {
-      $('#post_add_form').slideToggle();
-      $('.post_add_form-slide-icon').toggle();
-    });
-    
-  });
-</script>
 <?php get_footer(); ?>

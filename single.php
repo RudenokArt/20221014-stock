@@ -67,7 +67,7 @@ if ($current_order->meta['order_contractor'][0]) {
         <?php echo $current_order_contractor->data->display_name; ?><br>
         <?php echo $current_order_contractor->data->user_email; ?>
       <?php else: ?>
-        <?php if ($stock_user->contractor_access): ?>        
+        <?php if ($stock_user->contractor_access and $current_order->meta['order_status'][0] == 0): ?>        
           <a href="/alert?&order_contractor=<?php echo $stock_user->current_user->ID;?>&ID=<?php echo $current_order->ID;?>" class="btn btn-outline-info">
             <i class="fa fa-handshake-o" aria-hidden="true"></i>
             Стать исполнителем
