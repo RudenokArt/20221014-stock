@@ -82,3 +82,35 @@
 <pre><?php print_r($stock_orders->pagination) ?></pre>
 
 <?php get_footer(); ?>
+
+SELECT * FROM `wp_posts`
+JOIN `wp_term_relationships` 
+ON `wp_posts`.`ID`=`wp_term_relationships`.`object_id`
+WHERE `wp_posts`.`post_status`="publish"
+AND `wp_posts`.`post_type`="post"
+AND `wp_term_relationships`.`term_taxonomy_id`=2
+ORDER BY `wp_posts`.`ID` DESC
+
+SELECT * FROM `wp_posts`
+JOIN `wp_term_relationships` 
+ON `wp_posts`.`ID`=`wp_term_relationships`.`object_id`
+JOIN `wp_postmeta`
+ON `wp_posts`.`ID`=`wp_postmeta`.`post_id`
+WHERE `wp_posts`.`post_status`="publish"
+AND `wp_posts`.`post_type`="post"
+AND `wp_term_relationships`.`term_taxonomy_id`=2
+AND `wp_postmeta`.`meta_key`="customer_name"
+AND `wp_postmeta`.`meta_value` LIKE "%О № 2%"
+ORDER BY `wp_posts`.`ID` DESC
+
+SELECT * FROM `wp_posts`
+JOIN `wp_term_relationships` 
+ON `wp_posts`.`ID`=`wp_term_relationships`.`object_id`
+JOIN `wp_postmeta`
+ON `wp_posts`.`ID`=`wp_postmeta`.`post_id`
+WHERE `wp_posts`.`post_status`="publish"
+AND `wp_posts`.`post_type`="post"
+AND `wp_term_relationships`.`term_taxonomy_id`=2
+AND `wp_postmeta`.`meta_key`="customer_phone"
+AND `wp_postmeta`.`meta_value` LIKE "%123%"
+ORDER BY `wp_posts`.`ID` DESC
