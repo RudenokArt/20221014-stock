@@ -66,7 +66,6 @@
           <small class="text-secondary">Адрес заказчика:</small>
           <?php echo $value->meta['customer_address'][0]; ?>
         </div>
-
       </a>
     <?php endforeach ?>
   <?php else: ?>
@@ -75,11 +74,8 @@
     </div>
   <?php endif ?>
 
-
   <?php include_once 'includes/index-pagination.php' ?>
 </div>
-
-<pre><?php print_r($stock_orders->pagination) ?></pre>
 
 <?php get_footer(); ?>
 
@@ -114,3 +110,5 @@ AND `wp_term_relationships`.`term_taxonomy_id`=2
 AND `wp_postmeta`.`meta_key`="customer_phone"
 AND `wp_postmeta`.`meta_value` LIKE "%123%"
 ORDER BY `wp_posts`.`ID` DESC
+
+Далеко-далеко за словесными горами в стране гласных и согласных, живут рыбные, тексты. Ее, своего, коварный! Подзаголовок рыбного, не буквоград толку ipsum повстречался послушавшись всеми lorem составитель коварных, которое маленький дал бросил деревни.
