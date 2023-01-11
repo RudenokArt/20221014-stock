@@ -6,10 +6,19 @@ $contractors_list = get_users([
   'role' => 'subscriber',
 ])
 ?>
-<pre><?php print_r($_GET); ?></pre>
+
+<div class="row justify-content-end pb-2">
+     <div class="col-12 col-lg-3 col-md-4 col-sm-6" id="post_filter_form-slide">
+      <button class="btn btn-outline-info">
+        Фильтр/Поиск 
+        <i class="fa fa-chevron-down post_filter_form-slide-icon" aria-hidden="true"></i>
+        <i class="fa fa-chevron-up post_filter_form-slide-icon invisible_node" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
 
 
-<div class="row pb-3 justify-content-start">
+<div class="row pb-3 justify-content-start" id="post_filter_form">
 	<div class="col-lg-6 col-md-6 col-sm-12 col-12">
 		<form method="get" action="" class="container card p-2">
 			<div class="row">
@@ -83,7 +92,19 @@ $contractors_list = get_users([
    по дате:
  </div>
  <div class="col-lg-8 col-md-6 col-sm-12 col-12">
-   <select name="" class="form-select"></select>
+ <div class="row">
+      <div class="col-5">
+        <input type="text" <?php if (isset($_GET['order_date_from'])): ?>
+          value="<?php echo $_GET['order_date_from']; ?>"
+        <?php endif ?> name="order_date_from" class="form-control">
+      </div>
+      <div class="col-1">-</div>
+       <div class="col-5">
+        <input type="text" <?php if (isset($_GET['order_date_to'])): ?>
+          value="<?php echo $_GET['order_date_to']; ?>"
+        <?php endif ?> name="order_date_to"  class="form-control">
+      </div>
+    </div>
  </div>
 </div>
 <div class="row justify-content-center">
@@ -147,3 +168,30 @@ $contractors_list = get_users([
 </form>
 </div>
 </div>
+
+<script>
+  $(function () {
+    $('select[name="order_contractor_filter"]').change(function () {
+      $('select[name="order_status_filter"]').prop('value','');
+    });
+    $('select[name="order_status_filter"]').change(function () {
+      $('select[name="order_contractor_filter"]').prop('value','');
+    });
+  });
+
+  $( function() {
+    $('input[name="order_date_from"], input[name="order_date_to"]').datepicker({
+      dateFormat: "yy-mm-dd",
+    });
+
+    $(function () {
+    $('#post_filter_form').hide();
+    $('#post_filter_form-slide').click(function () {
+      $('#post_filter_form').slideToggle();
+      $('.post_filter_form-slide-icon').toggle();
+    });
+    
+  });
+
+  } );
+</script>

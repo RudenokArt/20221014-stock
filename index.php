@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="container pt-5">
+<div class="container pt-3">
   <?php 
   // ===== Показ ошибок =====
   include_once 'includes/display_errors.php';

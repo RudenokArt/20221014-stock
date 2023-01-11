@@ -59,6 +59,12 @@ class Stock_orders {
       if (isset($_GET['order_manager_filter']) and $_GET['order_manager_filter']) {
         $sql_filter_and = $sql_filter_and . ' AND `wp_posts`.`post_author`='.$_GET['order_manager_filter'];
       }
+      if (isset($_GET['order_date_from']) and $_GET['order_date_from']) {
+        $sql_filter_and = $sql_filter_and . ' AND DATE(`wp_posts`.`post_date`) >= "'.$_GET['order_date_from'].'"';
+      }
+      if (isset($_GET['order_date_to']) and $_GET['order_date_to']) {
+        $sql_filter_and = $sql_filter_and . ' AND DATE(`wp_posts`.`post_date`) <= "'.$_GET['order_date_to'].'"';
+      }
       if (isset($_GET['order_contractor_filter']) and $_GET['order_contractor_filter']) {
         $sql_filter_join = 'JOIN `wp_postmeta` ON `wp_posts`.`ID`=`wp_postmeta`.`post_id`';
         $sql_filter_and = $sql_filter_and .
@@ -71,6 +77,7 @@ class Stock_orders {
       }
 
 
+
       $this->sql = 'SELECT `ID` FROM `wp_posts`
       JOIN `wp_term_relationships` 
       ON `wp_posts`.`ID`=`wp_term_relationships`.`object_id`
@@ -80,8 +87,6 @@ class Stock_orders {
       AND `wp_term_relationships`.`term_taxonomy_id`='.$this->order_category->term_id.
       $sql_filter_and.'
       ORDER BY `wp_posts`.`ID` DESC';
-
-      echo $sql_filter_and;
     }
 
 

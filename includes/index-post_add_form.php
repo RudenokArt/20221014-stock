@@ -1,6 +1,6 @@
 <?php if ($stock_user->manager_access): ?>
 
- <div class="row pb-3">
+ <div class="row pb-2">
      <div class="col" id="post_add_form-slide">
       <button class="btn btn-outline-info">
         Добавить заказ 
